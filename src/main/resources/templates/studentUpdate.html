@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+    <title>Update Student</title>
+</head>
+    <body>
+        <div class="login-container">
+            <h2>Add New Student</h2>
+
+            <form th:action="@{/welcome/update}" th:object="${student}" th:method="post">
+                <input type="hidden" th:field="*{studId}">
+                <div class="input-pair">
+                    <div class="input-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" name="fullName" th:field="*{fullName}" placeholder="Student Name" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="standard">Standard</label>
+                        <input type="text" id="standard" name="standard" th:field="*{standard}" placeholder="Standard" required>
+                    </div>
+                </div>
+
+                <div class="input-pair">
+                    <div class="input-group">
+                        <label for="section">Section</label>
+                        <input type="text" id="section" name="section" th:field="*{section}" placeholder="Section" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="dateOfBirth">Date Of Birth</label>
+                        <input type="date" id="dateOfBirth" name="dateOfBirth" th:field="*{dateOfBirth}" placeholder="dd/mm/yyyy" required>
+                    </div>
+                </div>
+
+                <div class="input-pair">
+                    <div class="input-group">
+                        <label for="mobileNumber">Mobile Number</label>
+                        <input type="text" id="mobileNumber" name="mobileNumber" th:field="*{mobileNumber}" placeholder="Mobile" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" th:field="*{email}" placeholder="Email" required>
+                    </div>
+                </div>
+
+                <!-- Subject Details Section -->
+                <div class="subject-details">
+                    <h4>Subjects Details</h4>
+
+                    <div class="input-pair">
+                        <div class="input-group">
+                            <label for="englishMark">English</label>
+                            <input type="number" id="englishMark" name="englishMark" th:field="*{englishMark}" placeholder="English Mark" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="mathsMark">Maths</label>
+                            <input type="number" id="mathsMark" name="mathsMark" th:field="*{mathsMark}" placeholder="Math Mark" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="scienceMark">Science</label>
+                            <input type="number" id="scienceMark" name="scienceMark" th:field="*{scienceMark}" placeholder="Science Mark" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="hindiMark">Hindi</label>
+                            <input type="number" id="hindiMark" name="hindiMark" th:field="*{hindiMark}" placeholder="Hindi Mark" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="marathiMark">Marathi</label>
+                            <input type="number" id="marathiMark" name="marathiMark" th:field="*{marathiMark}" placeholder="Marathi Mark" required>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="login-button">Update Student</button>
+                <div class="reg-link">
+                    <a th:href="@{/welcome}">Back to home</a>
+                </div>
+
+            </form>
+        </div>
+    </body>
+</html>
+
+<style>
+  body{
+    font-family: Ubuntu;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .login-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 50%; /* Increased width */
+    margin: 0 auto; /* Centered the container */
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.input-pair {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.input-group {
+    width: 48%; /* Allows two inputs to sit side-by-side */
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #e8f0fe;
+}
+
+input:focus {
+    outline: none;
+    border: 1px solid #ccc;
+}
+
+.login-button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.login-button:hover {
+    background-color: #0056b3;
+}
+
+.subject-details {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.subject-details h4 {
+    margin-bottom: 15px;
+}
+
+.reg-link {
+    margin-top: 10px;
+    text-align: right;
+}
+
+.reg-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+
+.alert {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.alert .close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    color: #000;
+}
+</style>

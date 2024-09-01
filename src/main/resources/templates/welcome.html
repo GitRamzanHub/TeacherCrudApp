@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+    <title>Welcome</title>
+</head>
+<body>
+    <div th:if="${successMessage}" class="message success" th:text="${successMessage}">
+        <span class="close" onclick="this.parentElement.style.display='none';">&times;</span>
+        <span th:text="${successMessage}"></span>
+    </div>
+    <div th:if="${errorMessage}" class="message error" th:text="${errorMessage}">
+        <span class="close" onclick="this.parentElement.style.display='none';">&times;</span>
+        <span th:text="${errorMessage}"></span>
+    </div>
+
+    <div th:if="${updated}" class="message success" th:text="${updated}">
+        <span class="close" onclick="this.parentElement.style.display='none';">&times;</span>
+        <span th:text="${successMessage}"></span>
+    </div>
+
+    <div th:if="${updateError}" class="message error" th:text="${updateError}">
+        <span class="close" onclick="this.parentElement.style.display='none';">&times;</span>
+        <span th:text="${errorMessage}"></span>
+    </div>
+
+    <div th:if="${msg}" class="message success" th:text="${msg}">
+        <span th:text="${msg}"></span>
+        <span class="close" onclick="this.parentElement.style.display='none';">&times;</span>
+    </div>
+
+
+    <div class="userDetailContainer">
+        <h3> Welcome, <span th:text="${name}"></span> to Crud Web App</h3>
+        <div class="user-info">
+            <p>Name: <span th:text="${name}">user_name</span></p>
+            <p>Email: <span th:text="${email}">user_email</span></p>
+
+            <p><button type="submit" class="logout-button"><a th:href="@{/logout}">Logout</a></button> </p>
+            <p><button type="submit" class="logout-button"><a th:href="@{/addStudent}">Add Student</a></button> </p>
+        </div>
+
+        <div class="header-line">
+            <h3>User Information</h3>
+        </div>
+
+        <div class="user-table">
+            <table>
+                <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Standard</th>
+                    <th>Section</th>
+                    <th>DOB</th>
+                    <th>Mobile</th>
+                    <th>Hindi</th>
+                    <th>English</th>
+                    <th>Marathi</th>
+                    <th>Science</th>
+                    <th>Maths</th>
+                    <th>Total</th>
+                    <th>Percent</th>
+                    <th>Result</th>
+                    <th>Grade</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="student : ${students}">
+                    <td th:text="${student.fullName}">FirstName</td>
+                    <td th:text="${student.standard}">LastName</td>
+                    <td th:text="${student.section}">Email</td>
+                    <td th:text="${student.dateOfBirth}">City</td>
+                    <td th:text="${student.mobileNumber}">State</td>
+                    <td th:text="${student.hindiMark}">State</td>
+                    <td th:text="${student.englishMark}">State</td>
+                    <td th:text="${student.marathiMark}">State</td>
+                    <td th:text="${student.scienceMark}">State</td>
+                    <td th:text="${student.mathsMark}">State</td>
+                    <td th:text="${student.total}">State</td>
+                    <td th:text="${student.percentage + ' %'}">State</td>
+                    <td th:text="${student.result}">State</td>
+                    <td th:text="${student.grade}">State</td>
+                    <td>
+                        <a th:href="@{/welcome/update/{id}(id=${student.studId})}" class="edit-icon">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a th:href="@{/welcome/delete/{id}(id=${student.studId})}" class="delete-icon">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</body>
+</html>
+
+<style>
+
+body{
+    height: 100vh;
+    margin: 0px;
+    padding: 0px;
+    font-family: Ubuntu;
+    background-color: white;
+}
+.login_user_detail{
+    padding: 10px;
+}
+
+.user-info {
+    margin-top: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.col-header{
+  padding:5px;
+  background:#e2e9f2;
+  border-bottom:2px solid#cddceb;
+  color:#6d8aa9;
+  font-weight:700;
+  font-size:0.9em;
+}
+
+.logout-button {
+    width: 10%;
+    padding: 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+}
+.logout-button a {
+    color: white; /* Ensures the text inside the button is white */
+    text-decoration: none; /* Ensures the text is not underlined */
+}
+.pull_left{
+    float: left;
+}
+
+.header_label{
+    margin-left: 10px;
+    float:left;
+}
+.user-table {
+    margin-top: 20px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Styling for table headers */
+th {
+    background-color: #f2f2f2;
+    padding: 10px;
+    text-align: left;
+}
+
+/* Styling for table data cells */
+td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Ensuring each column is 20% width */
+th, td {
+    width: 20%;
+}
+
+.edit-icon, .delete-icon {
+    cursor: pointer;
+    color: #007bff;
+}
+
+.delete-icon {
+    color: #ff4d4d;
+}
+.message {
+    position: relative;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+.success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+.error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.message .close {
+    cursor: pointer;
+    color: #000;
+    font-size: 20px;
+}
+
+</style>
